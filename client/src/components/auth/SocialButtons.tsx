@@ -16,7 +16,17 @@ interface SocialButtonsProps {
 
 export function SocialButtons({ onError, callbackURL, mode = "signin", className = "" }: SocialButtonsProps) {
   const t = useExtracted();
-  const { configs } = useConfigs();
+  const { configs, isLoading } = useConfigs();
+
+  if (isLoading || !configs) {
+    return null;
+  }
+
+  const hasProviders = configs.enabledOIDCProviders.length > 0 || configs.enabledSocialProviders.length > 0;
+
+  if (!hasProviders) {
+    return null;
+  }
 
   const handleOIDCAuth = async (providerId: string) => {
     try {
@@ -47,21 +57,21 @@ export function SocialButtons({ onError, callbackURL, mode = "signin", className
   return (
     <>
       <div className={`flex flex-col gap-2 ${className}`}>
-        {configs?.enabledOIDCProviders.map((provider) => (
+        {configs.enabledOIDCProviders.map((provider) => (
           <Button key={provider.providerId} type="button" onClick={() => handleOIDCAuth(provider.providerId)}>
             <SiOpenid />
             {provider.name}
           </Button>
         ))}
 
-        {configs?.enabledSocialProviders.includes("google") && (
+        {configs.enabledSocialProviders.includes("google") && (
           <Button type="button" onClick={() => handleSocialAuth("google")}>
             <Image src="/crawlers/Google.svg" alt="Google" width={16} height={16} />
             {t("Continue with Google")}
           </Button>
         )}
 
-        {configs?.enabledSocialProviders.includes("github") && (
+        {configs.enabledSocialProviders.includes("github") && (
           <Button type="button" onClick={() => handleSocialAuth("github")}>
             <SiGithub />
             {t("Continue with GitHub")}
