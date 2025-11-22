@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { APIError, createAuthMiddleware } from "better-auth/api";
-import { admin, captcha, emailOTP, organization } from "better-auth/plugins";
+import { admin, captcha, emailOTP, organization, apiKey, genericOAuth } from "better-auth/plugins";
 import dotenv from "dotenv";
 import { and, asc, eq } from "drizzle-orm";
 import pg from "pg";
@@ -10,7 +10,7 @@ import { apiKey } from "@better-auth/api-key"
 import { db } from "../db/postgres/postgres.js";
 import * as schema from "../db/postgres/schema.js";
 import { invitation, member, memberSiteAccess, user } from "../db/postgres/schema.js";
-import { DISABLE_SIGNUP, IS_CLOUD } from "./const.js";
+import { API_RATE_LIMIT_WINDOW, DISABLE_SIGNUP, INTERNAL_AUTHENTICATION_ENABLED, IS_CLOUD, STANDARD_API_RATE_LIMIT, getOIDCProviders, getSocialProviders } from "./const.js";
 import { addContactToAudience, sendInvitationEmail, sendOtpEmail, sendWelcomeEmail } from "./email/email.js";
 import { onboardingTipsService } from "../services/onboardingTips/onboardingTipsService.js";
 
@@ -64,11 +64,15 @@ const pluginList = [
       },
     },
   }),
-  emailOTP({
-    async sendVerificationOTP({ email, otp, type }) {
-      await sendOtpEmail(email, otp, type);
-    },
+  genericOAuth({
+    config: getOIDCProviders()
   }),
+  ...(INTERNAL_AUTHENTICATION_ENABLED ? [
+    emailOTP({
+      async sendVerificationOTP({ email, otp, type }) {
+        await sendOtpEmail(email, otp, type);
+      },
+    })] : []),
   // Add Cloudflare Turnstile captcha (cloud only)
   ...(IS_CLOUD && process.env.TURNSTILE_SECRET_KEY && process.env.NODE_ENV === "production"
     ? [
@@ -91,21 +95,12 @@ export const auth = betterAuth({
     password: process.env.POSTGRES_PASSWORD,
   }),
   emailAndPassword: {
-    enabled: true,
+    enabled: INTERNAL_AUTHENTICATION_ENABLED,
     // Disable email verification for now
     requireEmailVerification: false,
     disableSignUp: DISABLE_SIGNUP,
   },
-  socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID!,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    },
-    github: {
-      clientId: process.env.GITHUB_CLIENT_ID!,
-      clientSecret: process.env.GITHUB_CLIENT_SECRET!,
-    },
-  },
+  socialProviders: getSocialProviders(),
   user: {
     additionalFields: {
       sendAutoEmailReports: {
@@ -114,11 +109,11 @@ export const auth = betterAuth({
         defaultValue: true,
         input: true,
       },
-      // scheduledTipEmailIds: {
-      //   type: "string[]",
-      //   required: false,
-      //   defaultValue: [],
-      // },
+      scheduledTipEmailIds: {
+        type: "string[]",
+        required: false,
+        defaultValue: [],
+      },
     },
     deleteUser: {
       enabled: true,

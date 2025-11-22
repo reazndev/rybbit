@@ -10,7 +10,7 @@ services:
       - "443:443"
       - "443:443/udp" # Needed for HTTP/3
     volumes:
-      - ./Caddyfile:/etc/caddy/Caddyfile # Mount Caddy config file
+      - ./Caddyfile:/etc/caddy/Caddyfile # Mount Caddyfile config file
       - caddy_data:/data # Mount persistent data volume for certs etc.
       - caddy_config:/config # Mount persistent config volume
     environment:
@@ -130,6 +130,11 @@ services:
       - OPENROUTER_MODEL=${OPENROUTER_MODEL}
       - CLUSTER_WORKERS=${CLUSTER_WORKERS:-4}
       - BETTER_AUTH_API_KEY=${BETTER_AUTH_API_KEY}
+      # Optional for OpenID Connect. Can have multiple OIDC providers by adding more env vars with different "PROVIDER"
+      # - OIDC_{PROVIDER}_NAME="SSO Provider"
+      # - OIDC_{PROVIDER}_CLIENT_ID=${OIDC_PROVIDER_CLIENT_ID}
+      # - OIDC_{PROVIDER}_CLIENT_SECRET=${OIDC_PROVIDER_CLIENT_SECRET}
+      # - OIDC_{PROVIDER}_DISCOVERY_URL=${OIDC_PROVIDER_DISCOVERY_URL} # e.g. https://accounts.google.com/.well-known/openid-configuration
     depends_on:
       clickhouse:
         condition: service_healthy

@@ -4,6 +4,11 @@ import { authedFetch } from "../api/utils";
 interface Configs {
   disableSignup: boolean;
   mapboxToken: string;
+  enabledOIDCProviders: Array<{
+    providerId: string;
+    name: string;
+  }>;
+  enabledSocialProviders: string[];
 }
 
 export function useConfigs() {
