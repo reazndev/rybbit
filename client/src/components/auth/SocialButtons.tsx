@@ -42,8 +42,8 @@ export function SocialButtons({ onError, callbackURL, mode = "signin", className
     try {
       await authClient.signIn.social({
         provider,
-        ...(callbackURL && mode !== "signup" ? { callbackURL } : {}),
-        // For signup flow, new users should be redirected to the same callbackURL
+        ...(callbackURL ? { callbackURL } : {}),
+        // For signup flow, new users should also be redirected to the callbackURL
         ...(mode === "signup" && callbackURL ? { newUserCallbackURL: callbackURL } : {}),
       });
     } catch (error) {
@@ -53,10 +53,6 @@ export function SocialButtons({ onError, callbackURL, mode = "signin", className
 
   return (
     <>
-      <div className="relative flex justify-center text-xs uppercase">
-        <span className="text-muted-foreground">Or continue with</span>
-      </div>
-
       <div className={`flex flex-col gap-2 ${className}`}>
         {configs?.enabledOIDCProviders.map((provider) => (
           <Button key={provider.providerId} type="button" onClick={() => handleOIDCAuth(provider.providerId)}>
@@ -78,6 +74,11 @@ export function SocialButtons({ onError, callbackURL, mode = "signin", className
             GitHub
           </Button>
         )}
+      </div>
+      <div className="relative flex items-center text-xs uppercase">
+        <div className="flex-1 border-t border-neutral-200 dark:border-neutral-800" />
+        <span className="px-3 text-muted-foreground">Or continue with email</span>
+        <div className="flex-1 border-t border-neutral-200 dark:border-neutral-800" />
       </div>
     </>
   );
