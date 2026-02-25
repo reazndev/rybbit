@@ -69,27 +69,31 @@ export function Login({ callbackURL }: LoginProps) {
     <form onSubmit={handleLogin}>
       <div className="flex flex-col gap-4">
         <SocialButtons onError={setError} callbackURL={callbackURL} />
-        <AuthInput
-          id="email"
-          label={t("Email")}
-          type="email"
-          placeholder="example@email.com"
-          required
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <AuthInput
-          id="password"
-          label={t("Password")}
-          type="password"
-          placeholder="••••••••"
-          required
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        <AuthButton isLoading={isLoading} loadingText={t("Logging in...")}>
-          {t("Login to Accept Invitation")}
-        </AuthButton>
+        {configs?.internalAuthEnabled && (
+          <>
+            <AuthInput
+              id="email"
+              label={t("Email")}
+              type="email"
+              placeholder="example@email.com"
+              required
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <AuthInput
+              id="password"
+              label={t("Password")}
+              type="password"
+              placeholder="••••••••"
+              required
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            <AuthButton isLoading={isLoading} loadingText={t("Logging in...")}>
+              {t("Login to Accept Invitation")}
+            </AuthButton>
+          </>
+        )}
         {configs?.enabledOIDCProviders.length ? (
           <AuthButton
             isLoading={false}

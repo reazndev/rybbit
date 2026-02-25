@@ -3,6 +3,7 @@ import { authedFetch } from "../api/utils";
 
 interface Configs {
   disableSignup: boolean;
+  internalAuthEnabled: boolean;
   mapboxToken: string;
   enabledOIDCProviders: Array<{
     providerId: string;

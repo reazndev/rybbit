@@ -7,6 +7,7 @@ import { useExtracted } from "next-intl";
 import Link from "next/link";
 
 import { IS_CLOUD } from "../../../lib/const";
+import type { Configs } from "../../../lib/configs";
 
 interface AccountStepProps {
   email: string;
@@ -18,6 +19,7 @@ interface AccountStepProps {
   isLoading: boolean;
   onSubmit: () => void;
   setError: (v: string) => void;
+  configs?: Configs;
 }
 
 export function AccountStep({
@@ -30,51 +32,57 @@ export function AccountStep({
   isLoading,
   onSubmit,
   setError,
+  configs,
 }: AccountStepProps) {
   const t = useExtracted();
+  const internalAuthEnabled = configs?.internalAuthEnabled ?? true;
 
   return (
     <div>
       <h2 className="text-2xl font-semibold mb-4">{t("Signup")}</h2>
       <div className="space-y-4">
         <SocialButtons onError={setError} callbackURL="/signup?step=2" mode="signup" />
-        <AuthInput
-          id="email"
-          label={t("Email")}
-          type="email"
-          placeholder="email@example.com"
-          required
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-        />
-        <AuthInput
-          id="password"
-          label={t("Password")}
-          type="password"
-          placeholder="••••••••"
-          required
-          value={password}
-          onChange={e => setPassword(e.target.value)}
-        />
-        {IS_CLOUD && (
-          <Turnstile
-            onSuccess={token => setTurnstileToken(token)}
-            onError={() => setTurnstileToken("")}
-            onExpire={() => setTurnstileToken("")}
-            className="flex justify-center"
-          />
+        {internalAuthEnabled && (
+          <>
+            <AuthInput
+              id="email"
+              label={t("Email")}
+              type="email"
+              placeholder="email@example.com"
+              required
+              value={email}
+              onChange={e => setEmail(e.target.value)}
+            />
+            <AuthInput
+              id="password"
+              label={t("Password")}
+              type="password"
+              placeholder="••••••••"
+              required
+              value={password}
+              onChange={e => setPassword(e.target.value)}
+            />
+            {IS_CLOUD && (
+              <Turnstile
+                onSuccess={token => setTurnstileToken(token)}
+                onError={() => setTurnstileToken("")}
+                onExpire={() => setTurnstileToken("")}
+                className="flex justify-center"
+              />
+            )}
+            <AuthButton
+              isLoading={isLoading}
+              loadingText={t("Creating account...")}
+              onClick={onSubmit}
+              type="button"
+              className="mt-6 transition-all duration-300 h-11"
+              disabled={IS_CLOUD ? !turnstileToken || isLoading : isLoading}
+            >
+              {t("Continue")}
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </AuthButton>
+          </>
         )}
-        <AuthButton
-          isLoading={isLoading}
-          loadingText={t("Creating account...")}
-          onClick={onSubmit}
-          type="button"
-          className="mt-6 transition-all duration-300 h-11"
-          disabled={IS_CLOUD ? !turnstileToken || isLoading : isLoading}
-        >
-          {t("Continue")}
-          <ArrowRight className="ml-2 h-4 w-4" />
-        </AuthButton>
         <div className="text-center text-sm">
           {t("Already have an account?")}{" "}
           <Link

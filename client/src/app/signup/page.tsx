@@ -242,6 +242,7 @@ function SignupPageContent() {
             isLoading={isLoading}
             onSubmit={handleAccountSubmit}
             setError={setError}
+            configs={configs}
           />
         );
       case 2:
