@@ -134,6 +134,7 @@ export async function getAdminSites(request: FastifyRequest, reply: FastifyReply
       eventsLast30Days: siteEventMap30d.get(site.siteId) || 0,
       goalsCount: siteGoalCountMap.get(site.siteId) || 0,
       funnelsCount: siteFunnelCountMap.get(site.siteId) || 0,
+      sessionReplay: site.sessionReplay ?? false,
       organizationOwnerEmail: site.organizationId ? orgOwnerMap.get(site.organizationId) : null,
       subscription: {
         planName: subscription?.planName || "free",

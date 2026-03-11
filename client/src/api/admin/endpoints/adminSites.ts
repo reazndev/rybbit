@@ -9,6 +9,7 @@ export interface AdminSiteData {
   eventsLast30Days: number;
   goalsCount: number;
   funnelsCount: number;
+  sessionReplay: boolean;
   organizationOwnerEmail: string | null;
   subscription: {
     planName: string;

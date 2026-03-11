@@ -576,6 +576,8 @@
   "viXE32": "Private",
   "6hdNA5": "Events (24h)",
   "J4r/Gi": "Events (30d)",
+  "Zh+5A6": "On",
+  "OvzONl": "Off",
   "C2EM7h": "Owner Email",
   "sEqhTf": "Failed to load sites data. Please try again later.",
   "r9Y1x6": "Search by domain or owner email...",
@@ -1166,10 +1168,5 @@
   "5YSWst": "Script is installed and running correctly.",
   "EIQFLe": "Script tag found but not executing",
   "+x0BAO": "Script not detected",
-  "rOpS8J": "Rybbit v{latest} is available (you're on v{current})",
-  "raz91s": "Paid",
-  "N7QE9K": "Open",
-  "6VtPnS": "Void",
-  "T6S3Fn": "Uncollectible",
-  "fS4iqP": "Draft"
+  "rOpS8J": "Rybbit v{latest} is available (you're on v{current})"
 }

@@ -576,6 +576,8 @@
   "viXE32": "Prywatna",
   "6hdNA5": "Zdarzenia (24h)",
   "J4r/Gi": "Zdarzenia (30d)",
+  "Zh+5A6": "",
+  "OvzONl": "",
   "C2EM7h": "E-mail właściciela",
   "sEqhTf": "Nie udało się załadować danych stron. Spróbuj ponownie później.",
   "r9Y1x6": "Szukaj po domenie lub e-mailu właściciela...",
@@ -1166,10 +1168,5 @@
   "5YSWst": "Skrypt jest zainstalowany i działa poprawnie.",
   "EIQFLe": "Znaleziono tag skryptu, ale nie jest wykonywany",
   "+x0BAO": "Skrypt nie wykryty",
-  "rOpS8J": "Rybbit v{latest} jest dostępny (masz v{current})",
-  "raz91s": "Opłacone",
-  "N7QE9K": "Otwarte",
-  "6VtPnS": "Anulowane",
-  "T6S3Fn": "Nieściągalne",
-  "fS4iqP": "Szkic"
+  "rOpS8J": "Rybbit v{latest} jest dostępny (masz v{current})"
 }

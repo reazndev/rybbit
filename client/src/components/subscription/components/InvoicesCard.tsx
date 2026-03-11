@@ -55,13 +55,22 @@ const statusVariants: Record<string, "success" | "warning" | "secondary" | "dest
   draft: "secondary",
 };
 
-const statusLabels: Record<string, string> = {
-  paid: "Paid",
-  open: "Open",
-  void: "Void",
-  uncollectible: "Uncollectible",
-  draft: "Draft",
-};
+function getStatusLabel(status: string | null, t: (key: string) => string): string {
+  switch (status) {
+    case "paid":
+      return t("Paid");
+    case "open":
+      return t("Open");
+    case "void":
+      return t("Void");
+    case "uncollectible":
+      return t("Uncollectible");
+    case "draft":
+      return t("Draft");
+    default:
+      return status ?? "";
+  }
+}
 
 export function InvoicesCard() {
   const t = useExtracted();
@@ -94,7 +103,7 @@ export function InvoicesCard() {
                   <td className="py-2.5 pr-4">{formatDate(invoice.created, locale)}</td>
                   <td className="py-2.5 pr-4">
                     <Badge variant={statusVariants[invoice.status ?? ""] ?? "secondary"}>
-                      {t(statusLabels[invoice.status ?? ""] ?? invoice.status ?? "")}
+                      {getStatusLabel(invoice.status, t)}
                     </Badge>
                   </td>
                   <td className="py-2.5 pr-4 text-right">{formatCurrency(invoice.amountPaid || invoice.amountDue, invoice.currency, locale)}</td>

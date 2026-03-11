@@ -576,6 +576,8 @@
   "viXE32": "Privado",
   "6hdNA5": "Eventos (24h)",
   "J4r/Gi": "Eventos (30d)",
+  "Zh+5A6": "",
+  "OvzONl": "",
   "C2EM7h": "Email do Proprietário",
   "sEqhTf": "Falha ao carregar dados de sites. Por favor, tente novamente mais tarde.",
   "r9Y1x6": "Pesquisar por domínio ou email do proprietário...",
@@ -1166,10 +1168,5 @@
   "5YSWst": "Script está instalado e funcionando corretamente.",
   "EIQFLe": "Tag de script encontrada mas não executando",
   "+x0BAO": "Script não detectado",
-  "rOpS8J": "Rybbit v{latest} está disponível (você está na v{current})",
-  "raz91s": "Pago",
-  "N7QE9K": "Aberto",
-  "6VtPnS": "Anulado",
-  "T6S3Fn": "Incobrável",
-  "fS4iqP": "Rascunho"
+  "rOpS8J": "Rybbit v{latest} está disponível (você está na v{current})"
 }

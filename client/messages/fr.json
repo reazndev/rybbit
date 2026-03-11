@@ -576,6 +576,8 @@
   "viXE32": "Privé",
   "6hdNA5": "Événements (24h)",
   "J4r/Gi": "Événements (30j)",
+  "Zh+5A6": "",
+  "OvzONl": "",
   "C2EM7h": "E-mail du propriétaire",
   "sEqhTf": "Échec du chargement des données de sites. Veuillez réessayer plus tard.",
   "r9Y1x6": "Rechercher par domaine ou e-mail du propriétaire...",
@@ -1166,10 +1168,5 @@
   "5YSWst": "Le script est installé et fonctionne correctement.",
   "EIQFLe": "Balise script trouvée mais ne s'exécute pas",
   "+x0BAO": "Script non détecté",
-  "rOpS8J": "Rybbit v{latest} est disponible (vous utilisez v{current})",
-  "raz91s": "Payé",
-  "N7QE9K": "Ouvert",
-  "6VtPnS": "Annulé",
-  "T6S3Fn": "Irrécouvrable",
-  "fS4iqP": "Brouillon"
+  "rOpS8J": "Rybbit v{latest} est disponible (vous utilisez v{current})"
 }

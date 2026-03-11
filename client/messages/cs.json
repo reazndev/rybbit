@@ -576,6 +576,8 @@
   "viXE32": "Soukromý",
   "6hdNA5": "Události (24h)",
   "J4r/Gi": "Události (30d)",
+  "Zh+5A6": "",
+  "OvzONl": "",
   "C2EM7h": "E-mail vlastníka",
   "sEqhTf": "Nepodařilo se načíst data webů. Zkus to prosím později.",
   "r9Y1x6": "Hledej podle domény nebo emailu vlastníka...",
@@ -1166,10 +1168,5 @@
   "5YSWst": "Skript je nainstalován a funguje správně.",
   "EIQFLe": "Tag skriptu nalezen, ale nespouští se",
   "+x0BAO": "Skript nebyl detekován",
-  "rOpS8J": "Rybbit v{latest} je k dispozici (máš v{current})",
-  "raz91s": "Zaplaceno",
-  "N7QE9K": "Otevřená",
-  "6VtPnS": "Zrušená",
-  "T6S3Fn": "Nevymahatelná",
-  "fS4iqP": "Koncept"
+  "rOpS8J": "Rybbit v{latest} je k dispozici (máš v{current})"
 }

@@ -112,6 +112,13 @@ export function Sites() {
         cell: ({ row }) => <div>{row.getValue("funnelsCount")}</div>,
       },
       {
+        accessorKey: "sessionReplay",
+        header: ({ column }) => <SortableHeader column={column}>{t("Replay")}</SortableHeader>,
+        cell: ({ row }) => (
+          <div>{row.getValue("sessionReplay") ? <Badge>{t("On")}</Badge> : <Badge variant="outline">{t("Off")}</Badge>}</div>
+        ),
+      },
+      {
         id: "subscription",
         header: ({ column }) => <SortableHeader column={column}>{t("Subscription")}</SortableHeader>,
         accessorFn: row => row.subscription.planName,
@@ -203,6 +210,9 @@ export function Sites() {
                     </TableCell>
                     <TableCell>
                       <Skeleton className="h-5 w-16" />
+                    </TableCell>
+                    <TableCell>
+                      <Skeleton className="h-5 w-12" />
                     </TableCell>
                     <TableCell>
                       <Skeleton className="h-5 w-12" />

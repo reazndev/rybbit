@@ -576,6 +576,8 @@
   "viXE32": "Privat",
   "6hdNA5": "Events (24h)",
   "J4r/Gi": "Events (30d)",
+  "Zh+5A6": "",
+  "OvzONl": "",
   "C2EM7h": "Inhaber-E-Mail",
   "sEqhTf": "Website-Daten konnten nicht geladen werden. Bitte versuchen Sie es später erneut.",
   "r9Y1x6": "Nach Domain oder Inhaber-E-Mail suchen...",
@@ -1166,10 +1168,5 @@
   "5YSWst": "Skript ist installiert und läuft korrekt.",
   "EIQFLe": "Script-Tag gefunden, wird aber nicht ausgeführt",
   "+x0BAO": "Skript nicht erkannt",
-  "rOpS8J": "Rybbit v{latest} ist verfügbar (Sie verwenden v{current})",
-  "raz91s": "Bezahlt",
-  "N7QE9K": "Offen",
-  "6VtPnS": "Storniert",
-  "T6S3Fn": "Uneinbringlich",
-  "fS4iqP": "Entwurf"
+  "rOpS8J": "Rybbit v{latest} ist verfügbar (Sie verwenden v{current})"
 }
