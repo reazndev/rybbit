@@ -229,7 +229,7 @@ export const apiKey = pgTable("apikey", {
   start: text(),
   prefix: text(),
   key: text().notNull(),
-  userId: text()
+  referenceId: text()
     .notNull()
     .references(() => user.id, { onDelete: "cascade" }),
   refillInterval: integer(),
@@ -245,6 +245,7 @@ export const apiKey = pgTable("apikey", {
   expiresAt: timestamp({ mode: "string" }),
   createdAt: timestamp({ mode: "string" }).notNull(),
   updatedAt: timestamp({ mode: "string" }).notNull(),
+  configId: text(),
   permissions: text(),
   metadata: jsonb(),
 });
