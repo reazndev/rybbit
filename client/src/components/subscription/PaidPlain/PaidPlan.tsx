@@ -13,7 +13,7 @@ import { UsageChart } from "../../UsageChart";
 import { authClient } from "@/lib/auth";
 import { InvoicesCard } from "../components/InvoicesCard";
 import { CancellationDialog } from "./CancellationDialog";
-import { PlanDialog } from "./PlanDialog";
+import { PlanDialog } from "../components/PlanDialog";
 
 export function PaidPlan() {
   const { data: activeSubscription, isLoading, error: subscriptionError, refetch } = useStripeSubscription();
