@@ -164,7 +164,14 @@ export function invalidateSitesAccessCache(userId: string) {
   sitesAccessCache.del(`${userId}:false`);
 }
 
-export async function checkApiKey(req: FastifyRequest, options: { organizationId?: string; siteId?: string | number }) {
+/**
+ * Verify an API key from the request and check organization membership.
+ * Returns rateLimited flag when the key is rejected due to rate limiting.
+ */
+export async function checkApiKey(
+  req: FastifyRequest,
+  options: { organizationId?: string; siteId?: string | number }
+): Promise<{ valid: boolean; role: string | null; rateLimited?: boolean }> {
   // Check if a valid API key was provided
   // Priority: 1. Authorization: Bearer header (recommended), 2. Query parameter (testing only)
   const authHeader = req.headers["authorization"];
@@ -216,6 +223,11 @@ export async function checkApiKey(req: FastifyRequest, options: { organizationId
           }
         }
         return { valid: false, role: null };
+      }
+
+      // Check if the key was rejected due to rate limiting
+      if (!result.valid && result.error?.code === "RATE_LIMITED") {
+        return { valid: false, role: null, rateLimited: true };
       }
     } catch (error) {
       logger.error(error, "Error verifying API key");
