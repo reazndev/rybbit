@@ -197,13 +197,15 @@ export function LandingPageTemplate({
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 items-center justify-items-center">
             <div className="flex items-center justify-center">
-              <Image
-                src="/logos/automatio.webp"
-                alt="automatio"
-                width={130}
-                height={40}
-                className="opacity-50 hover:opacity-80 dark:opacity-70 dark:hover:opacity-100 transition-opacity grayscale invert dark:invert-0"
-              />
+              <Link href="https://automatio.ai" target="_blank">
+                <Image
+                  src="/logos/automatio.webp"
+                  alt="automatio"
+                  width={130}
+                  height={40}
+                  className="opacity-50 hover:opacity-80 dark:opacity-70 dark:hover:opacity-100 transition-opacity grayscale invert dark:invert-0"
+                />
+              </Link>
             </div>
             <div className="flex items-center justify-center">
               <Image
