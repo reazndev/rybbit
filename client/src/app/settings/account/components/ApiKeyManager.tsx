@@ -110,7 +110,7 @@ export function ApiKeyManager() {
                 </Button>
               </div>
             ) : apiKeys && apiKeys.length > 0 ? (
-              <div className=" rounded-lg">
+              <div className="rounded-lg">
                 <Table>
                   <TableHeader>
                     <TableRow>
