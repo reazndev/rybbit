@@ -1,6 +1,6 @@
 import { betterAuth } from "better-auth";
 import { APIError, createAuthMiddleware } from "better-auth/api";
-import { admin, captcha, emailOTP, organization, apiKey, genericOAuth } from "better-auth/plugins";
+import { admin, captcha, emailOTP, organization, genericOAuth } from "better-auth/plugins";
 import dotenv from "dotenv";
 import { and, asc, eq } from "drizzle-orm";
 import pg from "pg";
@@ -10,7 +10,7 @@ import { apiKey } from "@better-auth/api-key"
 import { db } from "../db/postgres/postgres.js";
 import * as schema from "../db/postgres/schema.js";
 import { invitation, member, memberSiteAccess, user } from "../db/postgres/schema.js";
-import { API_RATE_LIMIT_WINDOW, DISABLE_SIGNUP, INTERNAL_AUTHENTICATION_ENABLED, IS_CLOUD, STANDARD_API_RATE_LIMIT, getOIDCProviders, getSocialProviders } from "./const.js";
+import { DISABLE_SIGNUP, IS_CLOUD, INTERNAL_AUTHENTICATION_ENABLED, getOIDCProviders, getSocialProviders } from "./const.js";
 import { addContactToAudience, sendInvitationEmail, sendOtpEmail, sendWelcomeEmail } from "./email/email.js";
 import { onboardingTipsService } from "../services/onboardingTips/onboardingTipsService.js";
 
