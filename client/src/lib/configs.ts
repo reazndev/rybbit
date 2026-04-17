@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { authedFetch } from "../api/utils";
 
-interface Configs {
+export interface Configs {
   disableSignup: boolean;
   internalAuthEnabled: boolean;
   mapboxToken: string;
